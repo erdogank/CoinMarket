@@ -58,7 +58,10 @@ public class Driver {
 
                 case "chrome-headless":
 
-                    driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--headless=new");
+
+                    driver = new ChromeDriver(options);
                     driver.manage().window().setSize(new Dimension(1440, 900));
                     break;
                 case "firefox":
