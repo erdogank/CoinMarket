@@ -41,7 +41,7 @@ public class Driver {
 //
                         ChromeOptions chromeOptions = new ChromeOptions();
                         chromeOptions.addArguments("--headless=new");
-                        driver = new RemoteWebDriver(new URL("http://3.87.207.126:4444/wd/hub"),chromeOptions);
+                        driver = new RemoteWebDriver(new URL("http://52.90.125.198:4444/wd/hub"),chromeOptions);
                         driver.manage().window().setSize(new Dimension(1920, 1080));
                         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     } catch (MalformedURLException e) {
