@@ -57,7 +57,7 @@ public class Driver {
                     break;
 
                 case "chrome-headless":
-                    System.setProperty("webdriver.chrome.driver","/usr/bin/google-chrome");
+                    //System.setProperty("webdriver.chrome.driver","/usr/bin/google-chrome");
 
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--headless");

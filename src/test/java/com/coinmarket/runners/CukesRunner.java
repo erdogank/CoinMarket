@@ -12,14 +12,14 @@ import org.junit.runner.RunWith;
                 "html:target/cucumber.html",
                 "json:target/cucumber.json",
                 "junit:target/cucumber.xml",
-                "me.jvt.cucumber.report.PrettyReports:target/cucumber",
+                //"me.jvt.cucumber.report.PrettyReports:target/cucumber",
 
 
         },
         features = "src/test/resources/features",
         glue = "com/coinmarket/step_definitions",
         dryRun = false,
-        tags = "@wip",
+        tags = "@wip6",
         publish = true     //when this is true, it will publish a report that will be valid for 24 hours
 
 
