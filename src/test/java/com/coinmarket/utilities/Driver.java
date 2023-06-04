@@ -62,7 +62,7 @@ public class Driver {
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--headless");
                     options.addArguments("--disable-gpu");
-                    //options.addArguments("--no-sandbox");
+                    options.addArguments("--no-sandbox");
 
                     driver = new ChromeDriver(options);
                     driver.manage().window().setSize(new Dimension(1920, 1080));
