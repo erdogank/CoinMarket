@@ -51,7 +51,7 @@ public class Driver {
                     break;
                 case "chrome":
 
-                    System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
+                    //System.setProperty("webdriver.chrome.driver","drivers/chromedriver.exe");
 
                     driver = new ChromeDriver();
                     driver.manage().window().maximize();
@@ -59,7 +59,7 @@ public class Driver {
                     break;
 
                 case "chrome-headless":
-                    System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
+                    System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
 
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--headless");
