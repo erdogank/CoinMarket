@@ -68,6 +68,7 @@ public class Driver {
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--headless");
                     options.addArguments("--disable-gpu");
+                    options.addArguments("--disable-dev-shm-usage");
                     //options.addArguments("--no-sandbox");
 
 
