@@ -14,8 +14,8 @@ public class Driverless {
     public void this_is_goodbye() {
         System.out.println("Hope it works and Good Bye");
         Driver.getDriver();
-//        Driver.getDriver().get("http://www.google.com");
-//        System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
+        Driver.getDriver().get("http://www.google.com");
+        System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
 
     }
 
