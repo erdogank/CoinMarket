@@ -1,6 +1,7 @@
 package com.coinmarket.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,6 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
@@ -23,7 +25,7 @@ public class Driver {
     //We make it static because we will use it in a static method.
     //private static WebDriver driver;
 
-    private static InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
+    private static final InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
 
     public static WebDriver getDriver(){
 
@@ -57,7 +59,7 @@ public class Driver {
 //                        desiredCapabilities.setBrowserName("chrome");
                         driverPool.set(new RemoteWebDriver(url, chromeOptions));
                         driverPool.get().manage().window().maximize();
-                        driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                        driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -74,14 +76,15 @@ public class Driver {
 
                     WebDriverManager.chromedriver().setup();
                     driverPool.set(new ChromeDriver(options));
-                    driverPool.get().manage().window().maximize();
-                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    //driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
+                    driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driverPool.set( new FirefoxDriver());
                     driverPool.get().manage().window().maximize();
-                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
 
 
