@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -51,8 +52,8 @@ public class Driver {
                         URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
 
                         ChromeOptions chromeOptions = new ChromeOptions();
-                        chromeOptions.addArguments("--headless");
-                        chromeOptions.addArguments("--allow-running-insecure-content");
+                        chromeOptions.addArguments("--headless=new");
+                        //chromeOptions.addArguments("--allow-running-insecure-content");
                         //chromeOptions.addArguments("--ignore-certificate-errors");
                         //chromeOptions.addArguments("--ignore-certificate-errors");
 
@@ -67,6 +68,34 @@ public class Driver {
                         e.printStackTrace();
                     }
                     break;
+
+
+                case "remote-firefox":
+                    try {
+                        // assign your grid server address
+                        String gridAddress = "18.212.10.44";
+                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
+
+                        FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+
+                        firefoxOptions.addArguments("--headless");
+                        //chromeOptions.addArguments("--allow-running-insecure-content");
+                        //chromeOptions.addArguments("--ignore-certificate-errors");
+                        //chromeOptions.addArguments("--ignore-certificate-errors");
+
+
+
+//                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+//                        desiredCapabilities.setBrowserName("chrome");
+                        driverPool.set(new RemoteWebDriver(url, firefoxOptions));
+                        driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
+                        driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
 
                 case "chrome":
 
