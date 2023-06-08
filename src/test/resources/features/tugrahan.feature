@@ -21,9 +21,9 @@ Feature: Users Can do the below things
 
     Examples:
       | coinName |
-      | OKX      |
+      | Bitget   |
       | Deribit  |
       | KuCoin   |
-      | Bitget   |
-      | Bitget   |
+      | OKX      |
+      | Kraken   |
 

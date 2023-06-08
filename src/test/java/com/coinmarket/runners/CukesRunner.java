@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/coinmarket/step_definitions",
         dryRun = false,
-        tags = "@wip",
+        tags = "@wip4",
         publish = true     //when this is true, it will publish a report that will be valid for 24 hours
 
 

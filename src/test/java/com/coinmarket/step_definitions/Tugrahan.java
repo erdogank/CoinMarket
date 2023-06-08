@@ -4,8 +4,13 @@ import com.coinmarket.pages.HomePage;
 import com.coinmarket.utilities.Driver;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -60,6 +65,9 @@ public class Tugrahan {
             }
 
         }
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(40));
+        wait.until(ExpectedConditions.titleContains(coin));
+
         System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
         Assert.assertTrue(Driver.getDriver().getTitle().contains(coin));
     }

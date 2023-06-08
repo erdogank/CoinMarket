@@ -52,13 +52,16 @@ public class Driver {
 
                         ChromeOptions chromeOptions = new ChromeOptions();
                         chromeOptions.addArguments("--headless");
+                        chromeOptions.addArguments("--allow-running-insecure-content");
+                        //chromeOptions.addArguments("--ignore-certificate-errors");
+                        //chromeOptions.addArguments("--ignore-certificate-errors");
 
 
 
 //                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 //                        desiredCapabilities.setBrowserName("chrome");
                         driverPool.set(new RemoteWebDriver(url, chromeOptions));
-                        driverPool.get().manage().window().maximize();
+                        driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
                         driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -68,13 +71,13 @@ public class Driver {
                 case "chrome":
 
                     ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--headless");
-                    options.addArguments("--disable-gpu");
-                    options.addArguments("--disable-dev-shm-usage");
-                    //options.addArguments("--no-sandbox");
-
-
-                    WebDriverManager.chromedriver().setup();
+//                    options.addArguments("--headless");
+//                    options.addArguments("--disable-gpu");
+//                    options.addArguments("--disable-dev-shm-usage");
+//                    //options.addArguments("--no-sandbox");
+//
+//
+//                    WebDriverManager.chromedriver().setup();
                     driverPool.set(new ChromeDriver(options));
                     //driverPool.get().manage().window().maximize();
                     driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
