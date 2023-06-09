@@ -12,7 +12,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+
 
 public class Driver {
     static String browser;
@@ -88,6 +88,8 @@ public class Driver {
 
 //                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 //                        desiredCapabilities.setBrowserName("chrome");
+                        //WebDriverManager.firefoxdriver().setup();
+                        //System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
                         driverPool.set(new RemoteWebDriver(url, firefoxOptions));
                         driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
                         driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -113,7 +115,8 @@ public class Driver {
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
                 case "firefox":
-                    WebDriverManager.firefoxdriver().setup();
+//                    WebDriverManager.firefoxdriver().setup();
+                    System.setProperty("webdriver.gecko.driver","drivers/geckodriver.exe");
                     driverPool.set( new FirefoxDriver());
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
