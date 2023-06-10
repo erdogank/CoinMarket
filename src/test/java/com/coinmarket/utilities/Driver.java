@@ -105,8 +105,8 @@ public class Driver {
 
                     options.addArguments("--headless=new");
                     options.addArguments("--disable-gpu");
-                    options.addArguments("--disable-dev-shm-usage");
-                    options.addArguments("--no-sandbox");
+                    //options.addArguments("--disable-dev-shm-usage");
+                    //options.addArguments("--no-sandbox");
 //
 //
 //                    WebDriverManager.chromedriver().setup();
