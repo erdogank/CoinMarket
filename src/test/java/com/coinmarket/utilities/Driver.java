@@ -102,10 +102,11 @@ public class Driver {
                 case "chrome":
 
                     ChromeOptions options = new ChromeOptions();
-//                    options.addArguments("--headless");
-//                    options.addArguments("--disable-gpu");
-//                    options.addArguments("--disable-dev-shm-usage");
-//                    //options.addArguments("--no-sandbox");
+
+                    options.addArguments("--headless");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--disable-dev-shm-usage");
+                    options.addArguments("--no-sandbox");
 //
 //
 //                    WebDriverManager.chromedriver().setup();
