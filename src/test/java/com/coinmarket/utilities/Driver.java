@@ -104,17 +104,22 @@ public class Driver {
                     ChromeOptions options = new ChromeOptions();
 
                     options.addArguments("--headless");
-                    //options.addArguments("--disable-gpu");
-                    //options.addArguments("--disable-dev-shm-usage");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--disable-dev-shm-usage");
                     //options.addArguments("--no-sandbox");
 //
 //
-//                    WebDriverManager.chromedriver().setup();
+                    WebDriverManager.chromedriver().setup();
                     driverPool.set(new ChromeDriver(options));
                     //driverPool.get().manage().window().maximize();
                     driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
+
+
+
+
+
                 case "firefox":
 //                    WebDriverManager.firefoxdriver().setup();
                     System.setProperty("webdriver.gecko.driver","drivers/geckodriver.exe");
