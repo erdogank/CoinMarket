@@ -121,9 +121,15 @@ public class Driver {
 
 
                 case "firefox":
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+
+                    firefoxOptions.addArguments("--headless");
+
 //                    WebDriverManager.firefoxdriver().setup();
                     System.setProperty("webdriver.gecko.driver","drivers/geckodriver.exe");
-                    driverPool.set( new FirefoxDriver());
+
+                    driverPool.set( new FirefoxDriver(firefoxOptions));
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
