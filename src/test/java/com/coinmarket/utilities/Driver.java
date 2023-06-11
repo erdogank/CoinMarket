@@ -127,7 +127,7 @@ public class Driver {
                     firefoxOptions.addArguments("--headless");
 
 //                    WebDriverManager.firefoxdriver().setup();
-                    System.setProperty("webdriver.gecko.driver","drivers/geckodriver.exe");
+                    System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
 
                     driverPool.set( new FirefoxDriver(firefoxOptions));
                     driverPool.get().manage().window().maximize();
