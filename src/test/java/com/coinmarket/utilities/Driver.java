@@ -125,12 +125,15 @@ public class Driver {
 
 
                     firefoxOptions.addArguments("--headless");
+                    firefoxOptions.addArguments("--disable-gpu");
+                    firefoxOptions.addArguments("--disable-dev-shm-usage");
 
                    //WebDriverManager.firefoxdriver().setup();
-                    System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
+                    //System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
 
                     driverPool.set( new FirefoxDriver(firefoxOptions));
-                    driverPool.get().manage().window().maximize();
+                    //driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
 
