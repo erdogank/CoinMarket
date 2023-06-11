@@ -128,7 +128,7 @@ public class Driver {
                     firefoxOptions.addArguments("--disable-gpu");
                     firefoxOptions.addArguments("--disable-dev-shm-usage");
 
-                   //WebDriverManager.firefoxdriver().setup();
+                   WebDriverManager.firefoxdriver().setup();
                     //System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
 
                     driverPool.set( new FirefoxDriver(firefoxOptions));
