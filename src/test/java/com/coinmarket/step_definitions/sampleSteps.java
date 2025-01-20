@@ -9,17 +9,28 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
 
 public class sampleSteps {
     
-    HomePage homePage = new HomePage();
+    HomePage homePage;
+
+    {
+        try {
+            homePage = new HomePage();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
 
     @Given("user is on the homepage")
@@ -92,18 +103,24 @@ public class sampleSteps {
     @When("user clicks on filters")
     public void user_clicks_on_filters() {
         BrowserUtils.sleep(3);
-        //Actions actions = new Actions(Driver.getDriver());
-        homePage.filterButton.click();
+        System.out.println("waited 3 seconds");
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].click();", homePage.filterButton);
+        //wait.until(ExpectedConditions.elementToBeClickable(homePage.filterButton));
+       // homePage.filterButton.click();
         //actions.click(homePage.filterButton);
 
     }
     @When("click on add filter")
     public void click_on_add_filter() {
         //wait.until(ExpectedConditions.elementToBeClickable(homePage.addFilter));
-        BrowserUtils.sleep(1);
+        BrowserUtils.sleep(2);
+        System.out.println("waited 2 seconds");
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].click();", homePage.addFilter);
 
 
-        homePage.addFilter.click();
+        //homePage.addFilter.click();
 
     }
     @When("clicks on price")
@@ -138,6 +155,7 @@ public class sampleSteps {
 
         for (WebElement priceCell : homePage.priceCells) {
             String eachPrice = priceCell.getText().substring(1);
+            System.out.println(eachPrice);
             Double eachPriceDouble = Double.parseDouble(eachPrice);
 
             Assert.assertTrue(eachPriceDouble>min&&eachPriceDouble<max);

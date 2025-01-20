@@ -6,10 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 public class HomePage {
-    public HomePage(){
+    public HomePage() throws IOException {
 
         PageFactory.initElements(Driver.getDriver(),this);
     }
@@ -31,7 +32,7 @@ public class HomePage {
     @FindBy(xpath = "/html[@class='nprogress-busy']")
     public WebElement progress;
 
-    @FindBy(css ="div>button.sc-44910c32-0.joPzXo.sc-c97dd8af-0.kHBmSh.table-control-filter")
+    @FindBy(xpath ="//div/div[1]/div[3]/div[1]/span/button[1]")
     public WebElement filterButton;
 
     @FindBy(xpath = "(//li/button)[1]")
@@ -55,22 +56,63 @@ public class HomePage {
     @FindBy(xpath = "//tbody/tr/td[4]")
     public List<WebElement> priceCells;
 
-    @FindBy(css = "div[class='sc-d598dd22-1 hiGkfq menu-item-1']>a")
+    @FindBy(css = "div:nth-child(3) > a > div")
     public WebElement excahangesLink;
 
-    @FindBy(css = "div[class='sc-d598dd22-2 kqJhxB submenu']>a[href='/rankings/exchanges/derivatives/']")
+    @FindBy(xpath = "//div/a[@href='/rankings/exchanges/derivatives/']")
     public WebElement derivatives;
 
-    @FindBy(xpath = "//tbody/tr/td[2]/a/div/div/p[contains(.,'Binance')]")
+    @FindBy(xpath = "//tbody/tr/td[2]/a/div/div/p[(.='Binance')]")
     public  WebElement binanceCell;
 
     @FindBy(linkText = "Fees")
    public WebElement feesLink;
 
-    public WebElement coinCell(String coinName){
+    @FindBy(xpath = "//tbody/tr[1]/td[1]/span" )
+    public WebElement firstStar;
+
+ @FindBy(xpath = "//tbody/tr[5]/td[1]/span" )
+ public WebElement fifthStar;
+
+ @FindBy(xpath = "//tbody/tr[1]/td[1]/span/span" )
+ public WebElement firstStarAttr;
+
+ @FindBy(xpath = "//tbody/tr[1]/td[3]/div/a/div/div/div/p")
+ public WebElement nameOfFirstCoinCell;
+
+ @FindBy(xpath = "(//a/span)[2]")
+ public WebElement watchList;
+
+ @FindBy(css = "body > div:nth-child(15) > div > div > svg > path")
+ public WebElement XButtonToCloseWatchlist;
+
+ @FindBy(xpath = "/html/body/div[6]/div/div/div/div/div[3]")
+ public WebElement createAnAccount;
+
+ @FindBy(xpath = "//*[@id=\"onetrust-reject-all-handler\"]")
+ public WebElement cookiesReject;
+
+ @FindBy(xpath = "//tbody/tr")
+ public List<WebElement> tableRows;
+
+ @FindBy(xpath = "(//div[@class='sc-194d08f0-7 hKUAPU'])[1]")
+ public WebElement CryptoCurrenciesLink;
+
+ @FindBy(xpath = "(//div[@class='sc-194d08f0-9 hHCBVT'])[1]/a")
+ public List<WebElement> CyrptocurrenciesMenuItems;
+
+ @FindBy(xpath = "//div[@class='sc-194d08f0-3 cZeAph']/section/div")
+ public List<WebElement> mainMenuItems;
+
+    public WebElement coinCell(String coinName) throws IOException {
      String coinLocator = "//tbody/tr/td[2]/a/div/div/p[contains(.,'"+coinName+"')]";
      return Driver.getDriver().findElement(By.xpath(coinLocator));
     }
+
+    /*
+    sembol locator
+    //td[3]/div/a/div/div/div/div/p[(.='BTC')]
+     */
 
 
 

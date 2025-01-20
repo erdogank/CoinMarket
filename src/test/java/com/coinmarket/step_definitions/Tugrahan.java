@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,9 +22,12 @@ public class Tugrahan {
     String windowHande="";
     Set<String> windowHandles = new HashSet<>();
 
+    public Tugrahan() throws IOException {
+    }
+
     @Then("users clicks the derivatives under the Exchanges")
     public void users_clicks_the_derivatives_under_the_exchanges() {
-        actions.moveToElement(homePage.excahangesLink).pause(200)
+        actions.moveToElement(homePage.excahangesLink).pause(400)
                 .click(homePage.derivatives)
                 .perform();
     }
@@ -54,7 +58,7 @@ public class Tugrahan {
     }
 
     @Then("users clicks the {string}")
-    public void users_clicks_the(String coin) {
+    public void users_clicks_the(String coin) throws IOException {
         homePage.coinCell(coin).click();
     }
     @Then("users sees {string} in new tab")
