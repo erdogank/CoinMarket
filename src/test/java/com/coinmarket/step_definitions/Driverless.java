@@ -15,9 +15,9 @@ public class Driverless {
     @Then("This is goodbye")
     public void this_is_goodbye() throws IOException {
         System.out.println("Hope it works and Good Bye");
-        Driver.getDriver();
-        Driver.getDriver().get("https://www.google.com/");
-        System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
+        //Driver.getDriver();
+        //Driver.getDriver().get("https://www.google.com/");
+        //System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
 
     }
 
