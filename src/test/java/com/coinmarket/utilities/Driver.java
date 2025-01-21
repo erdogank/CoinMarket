@@ -61,11 +61,16 @@ public class Driver {
 
 
 
-                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setBrowserName("chrome");
-                        driverPool.set(new RemoteWebDriver(url,desiredCapabilities));
-                        driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
-                        driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+//                        desiredCapabilities.setBrowserName("chrome");
+
+                        ChromeOptions options = new ChromeOptions();
+
+                        driverPool.set(new RemoteWebDriver(options));
+
+//                        driverPool.set(new RemoteWebDriver(url,desiredCapabilities));
+//                        driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
+//                        driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
