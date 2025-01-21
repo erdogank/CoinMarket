@@ -51,7 +51,7 @@ public class Driver {
                     try {
                         // assign your grid server address
                         String gridAddress = "192.168.157.128";
-                        URL url = new URL("http://" + gridAddress + ":4444");
+                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
 
                         //ChromeOptions chromeOptions = new ChromeOptions();
                         //chromeOptions.addArguments("--headless=new");
