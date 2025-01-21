@@ -52,27 +52,19 @@ public class Driver {
                         // assign your grid server address
                         String gridAddress = "192.168.157.128";
                         URL url = new URL("http://" + gridAddress + ":4444");
-
-                        //ChromeOptions chromeOptions = new ChromeOptions();
-                        //chromeOptions.addArguments("--headless=new");
-                        //chromeOptions.addArguments("--allow-running-insecure-content");
-                        //chromeOptions.addArguments("--ignore-certificate-errors");
-                        //chromeOptions.addArguments("--ignore-certificate-errors");
-
-
-
-//                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-//                        desiredCapabilities.setBrowserName("chrome");
+                        System.out.println(url);
 
                         ChromeOptions options = new ChromeOptions();
+                        options.addArguments("--headless=new"); // Ensure the browser runs in headless mode
+                        options.addArguments("--disable-gpu");
+                        options.addArguments("--disable-dev-shm-usage");
+                        options.addArguments("--no-sandbox");
 
-                        WebDriverManager.chromedriver().setup();
+                        System.out.println("Initializing RemoteWebDriver with URL: " + url);
 
-                        driverPool.set(new RemoteWebDriver(url,options));
-
-//                        driverPool.set(new RemoteWebDriver(url,desiredCapabilities));
-//                        driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
-//                        driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                        driverPool.set(new RemoteWebDriver(url, options));
+                        driverPool.get().manage().window().maximize();
+                        driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -82,8 +74,9 @@ public class Driver {
                 case "remote-firefox":
                     try {
                         // assign your grid server address
-                        String gridAddress = "18.212.10.44";
-                        URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
+                        String gridAddress = "192.168.157.128";
+                        URL url = new URL("http://" + gridAddress + ":4444");
+                        System.out.println(url);
 
                         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
