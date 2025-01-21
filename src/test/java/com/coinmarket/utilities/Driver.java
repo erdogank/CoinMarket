@@ -53,17 +53,17 @@ public class Driver {
                         String gridAddress = "http://192.168.157.128/";
                         URL url = new URL("http://" + gridAddress + ":4444/wd/hub");
 
-                        ChromeOptions chromeOptions = new ChromeOptions();
-                        chromeOptions.addArguments("--headless=new");
+                        //ChromeOptions chromeOptions = new ChromeOptions();
+                        //chromeOptions.addArguments("--headless=new");
                         //chromeOptions.addArguments("--allow-running-insecure-content");
                         //chromeOptions.addArguments("--ignore-certificate-errors");
                         //chromeOptions.addArguments("--ignore-certificate-errors");
 
 
 
-//                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-//                        desiredCapabilities.setBrowserName("chrome");
-                        driverPool.set(new RemoteWebDriver(url, chromeOptions));
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("chrome");
+                        driverPool.set(new RemoteWebDriver(url,desiredCapabilities));
                         driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
                         driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     } catch (Exception e) {
