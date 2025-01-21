@@ -66,7 +66,7 @@ public class Driver {
 
                         ChromeOptions options = new ChromeOptions();
 
-                        driverPool.set(new RemoteWebDriver(options));
+                        driverPool.set(new RemoteWebDriver(url,options));
 
 //                        driverPool.set(new RemoteWebDriver(url,desiredCapabilities));
 //                        driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
