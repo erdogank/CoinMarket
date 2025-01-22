@@ -56,8 +56,8 @@ public class Driver {
 
                         ChromeOptions options = new ChromeOptions();
                         options.addArguments("--headless=new"); // Ensure the browser runs in headless mode
-                        options.addArguments("--disable-gpu");
-                        options.addArguments("--disable-dev-shm-usage");
+                        //options.addArguments("--disable-gpu");
+                        //options.addArguments("--disable-dev-shm-usage");
                         options.addArguments("--no-sandbox");
 
                         System.out.println("Initializing RemoteWebDriver with URL: " + url);
