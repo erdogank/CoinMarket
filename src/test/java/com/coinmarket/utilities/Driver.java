@@ -56,11 +56,13 @@ public class Driver {
 
                         ChromeOptions options = new ChromeOptions();
                         options.addArguments("--headless=new"); // Ensure the browser runs in headless mode
-                        //options.addArguments("--disable-gpu");
-                        //options.addArguments("--disable-dev-shm-usage");
+                        options.addArguments("--disable-gpu");
+                        options.addArguments("--disable-dev-shm-usage");
                         options.addArguments("--no-sandbox");
 
                         System.out.println("Initializing RemoteWebDriver with URL: " + url);
+
+                        //System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
 
                         driverPool.set(new RemoteWebDriver(url, options));
                         driverPool.get().manage().window().maximize();
@@ -73,28 +75,38 @@ public class Driver {
 
                 case "remote-firefox":
                     try {
-                        // assign your grid server address
+
+                        // Assign your grid server address
                         String gridAddress = "192.168.157.128";
                         URL url = new URL("http://" + gridAddress + ":4444");
                         System.out.println(url);
 
                         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
+// Add options to run Firefox in headless mode and improve compatibility
+                        firefoxOptions.addArguments("--headless"); // Ensure the browser runs in headless mode
+                        firefoxOptions.addArguments("--disable-gpu"); // Disable GPU acceleration
+                        firefoxOptions.addArguments("--disable-dev-shm-usage"); // Avoid shared memory issues
+                        firefoxOptions.addArguments("--no-sandbox"); // Bypass OS-level sandboxing for compatibility
 
-                        firefoxOptions.addArguments("--headless");
-                        //chromeOptions.addArguments("--allow-running-insecure-content");
-                        //chromeOptions.addArguments("--ignore-certificate-errors");
-                        //chromeOptions.addArguments("--ignore-certificate-errors");
+// Log initialization details
+                        System.out.println("Initializing RemoteWebDriver for Firefox with URL: " + url);
 
-
-
-//                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-//                        desiredCapabilities.setBrowserName("chrome");
-                        //WebDriverManager.firefoxdriver().setup();
+// Initialize the RemoteWebDriver
+                        WebDriverManager.firefoxdriver().setup();
                         //System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
                         driverPool.set(new RemoteWebDriver(url, firefoxOptions));
+
+// Maximize or set a fixed window size
                         driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
+
+// Set an implicit wait for element loading
                         driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+
+
+                        //System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -128,17 +140,19 @@ public class Driver {
                 case "firefox":
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
 
+                    firefoxOptions.setCapability("moz:debuggerAddress", true); // Enables BiDi support
 
-                    firefoxOptions.addArguments("--headless");
-                    firefoxOptions.addArguments("--disable-gpu");
-                    firefoxOptions.addArguments("--disable-dev-shm-usage");
+
+//                    firefoxOptions.addArguments("--headless");
+//                    firefoxOptions.addArguments("--disable-gpu");
+//                    firefoxOptions.addArguments("--disable-dev-shm-usage");
 
                    WebDriverManager.firefoxdriver().setup();
                     //System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
 
                     driverPool.set( new FirefoxDriver(firefoxOptions));
-                    //driverPool.get().manage().window().maximize();
-                    driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
+                    driverPool.get().manage().window().maximize();
+                    //driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
 

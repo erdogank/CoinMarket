@@ -1,6 +1,7 @@
 package com.coinmarket.step_definitions;
 
 import com.coinmarket.pages.HomePage;
+import com.coinmarket.utilities.BrowserUtils;
 import com.coinmarket.utilities.Driver;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
@@ -30,9 +31,14 @@ public class Tugrahan {
         actions.moveToElement(homePage.excahangesLink).pause(400)
                 .click(homePage.derivatives)
                 .perform();
+
+
     }
     @Then("users clicks the Binance")
     public void users_clicks_the_binance() {
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(homePage.binanceCell));
 
         homePage.binanceCell.click();
     }
@@ -53,6 +59,8 @@ public class Tugrahan {
             }
 
         }
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.titleContains("Binance"));
         System.out.println("Driver.getDriver().getTitle() = " + Driver.getDriver().getTitle());
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Binance"));
     }
