@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
         glue = "com/coinmarket/step_definitions",
         monochrome = true,                        // Makes console output readable
         dryRun = false,
-        tags = "@wip5",
+        tags = "@wip3",
         publish = true     //when this is true, it will publish a report that will be valid for 24 hours
 
 

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -112,6 +114,32 @@ public class Driver {
                     }
                     break;
 
+                case "remote-edge":
+                    try {
+                        // Assign your Selenium Grid server address
+                        String gridAddress = "192.168.157.128"; // Replace with your Grid server's IP address
+                        URL url = new URL("http://" + gridAddress + ":4444"); // Ensure the Grid is running at this address
+                        System.out.println(url);
+
+                        // Configure Edge-specific options
+                        EdgeOptions options = new EdgeOptions();
+                        options.addArguments("--headless=new"); // Run in headless mode
+                        options.addArguments("--disable-gpu");
+                        options.addArguments("--disable-dev-shm-usage");
+                        options.addArguments("--no-sandbox");
+
+                        System.out.println("Initializing RemoteWebDriver with URL: " + url);
+
+                        // Initialize the Remote WebDriver with Edge options
+                        driverPool.set(new RemoteWebDriver(url, options));
+                        driverPool.get().manage().window().maximize(); // Maximize the browser window
+                        driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Set implicit wait
+                    } catch (Exception e) {
+                        e.printStackTrace(); // Print any exceptions for debugging
+                    }
+                    break;
+
+
 
                 case "chrome":
 
@@ -132,6 +160,25 @@ public class Driver {
                     //driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
+
+                case "edge":
+
+                    // Setting up the Edge WebDriver using WebDriverManager
+                    WebDriverManager.edgedriver().setup();
+
+                    // Initializing the EdgeDriver
+                    driverPool.set(new EdgeDriver());
+
+                    // Maximizing the browser window
+                    driverPool.get().manage().window().maximize();
+
+                    // Optionally, set custom dimensions for the browser window
+                    // driverPool.get().manage().window().setSize(new Dimension(1920, 1080));
+
+                    // Setting an implicit wait timeout
+                    driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                    break;
+
 
 
 
