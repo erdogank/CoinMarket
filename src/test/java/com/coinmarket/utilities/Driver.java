@@ -95,7 +95,7 @@ public class Driver {
                         System.out.println("Initializing RemoteWebDriver for Firefox with URL: " + url);
 
 // Initialize the RemoteWebDriver
-                        WebDriverManager.firefoxdriver().setup();
+                        //WebDriverManager.firefoxdriver().setup();
                         //System.setProperty("webdriver.gecko.driver","drivers/geckodriver");
                         driverPool.set(new RemoteWebDriver(url, firefoxOptions));
 
@@ -178,10 +178,6 @@ public class Driver {
                     // Setting an implicit wait timeout
                     driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
-
-
-
-
 
 
                 case "firefox":
